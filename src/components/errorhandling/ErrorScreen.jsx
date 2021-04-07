@@ -1,9 +1,12 @@
 import React from 'react'
+import { Container,Segment } from 'semantic-ui-react'
 
-export default function ErrorScreen() {
+export default function ErrorScreen(props) {
     return (
-        <div>
-            Okay this worked!
-        </div>
+        <Container>
+        <Segment>
+            Something went wrong !
+        </Segment>
+      </Container>
     )
 }

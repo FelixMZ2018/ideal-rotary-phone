@@ -1,19 +1,41 @@
 import React, { Component } from "react";
+import { Redirect, withRouter } from "react-router-dom";
+import ErrorScreen from "./ErrorScreen";
 
-export default class ErrorBoundary extends Component {
+class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
-    this.state = {hasError: false}
+    this.state = { hasError: false, error: null, errorInfo: null };
   }
 
-  componentDidCatch(error, info) {
-    console.log(error);
+  componentDidCatch(error, errorInfo) {
+    this.setState({
+      error: error,
+      errorInfo: errorInfo,
+      hasError: true
+    })
   }
-  
-  static getDerivedStateFromError(error) {
-    return <div>Oh no! </div>;
-}
+
+
   render() {
-    return <div>{this.props.children}</div>;
+    if (this.state.hasError) {
+      this.setState( {
+        hasError: false
+      })
+      // You can render any custom fallback UI
+      return (  
+        <div>
+        <Redirect to="error"/>
+
+        <ErrorScreen error={this.state.error}/>
+
+        </div>
+      )
+   
+    }
+
+    return this.props.children;
   }
 }
+
+export default withRouter(ErrorBoundary)
