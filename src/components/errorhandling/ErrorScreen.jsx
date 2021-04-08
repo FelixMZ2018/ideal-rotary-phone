@@ -2,10 +2,13 @@ import React from 'react'
 import { Button, Container,Form,Image,Segment, TextArea } from 'semantic-ui-react'
 import error_image from 'images/Error.gif'
 import { Input } from '@material-ui/core'
+import { useHistory } from "react-router-dom";
+
 
 export default function ErrorScreen(props) {
     console.log(props)
     const error_message = ""
+    const history = useHistory();
 
    /// const error_message = props.location.state.error
    /// const stacktrace = props.location.state.stacktrace
@@ -34,7 +37,7 @@ export default function ErrorScreen(props) {
             <Form>
             <Form.Field>
                  <label>Last steps:</label>
-                 <input placeholder='Tried adding a new centrifuge' />
+                 <input placeholder='e.g.: Tried adding a new centrifuge' />
              </Form.Field>
             <p>In addition we are collecting the following information:</p>
             <div class="ui form">
@@ -44,12 +47,20 @@ export default function ErrorScreen(props) {
       <input placeholder={errorMessage(props)} readonly="" type="text"/>
     </div>
     <div class="field">
-      <label>Last Name</label>
+      <label>Stacktrace</label>
       <TextArea placeholder={stacktrace(props)} readonly="" type="text"/>
     </div>
   </div>
 </div>
+<br></br>
 <Button>Submit</Button>
+<Button
+                onClick={() => {
+                    history.goBack();
+                }}
+            >
+                Go back
+            </Button>
             </Form>
         </Segment>
       </Container>

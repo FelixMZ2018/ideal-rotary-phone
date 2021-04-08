@@ -14,6 +14,7 @@ class ErrorBoundary extends Component {
       errorInfo: errorInfo,
       hasError: true
     })
+    // Any automatic logging (Firebase or Sentry) can be added here
   }
 
 
