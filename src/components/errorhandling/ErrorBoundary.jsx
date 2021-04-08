@@ -22,12 +22,15 @@ class ErrorBoundary extends Component {
       this.setState( {
         hasError: false
       })
-      // You can render any custom fallback UI
+      // Reseting the has error state //
+      // Note: Errors in the Error Screen Component might cause an infinite loop ...
       return (  
         <div>
-        <Redirect to="error"/>
+        <Redirect to={{
+          pathname: "error",
+          state: {error: this.state.error.message,stacktrace: this.state.errorInfo.componentStack}}}/>
 
-        <ErrorScreen error={this.state.error}/>
+        <ErrorScreen error={this.state.error} errorInfo={this.state.errorInfo} />
 
         </div>
       )

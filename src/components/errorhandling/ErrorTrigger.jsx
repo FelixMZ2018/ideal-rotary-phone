@@ -9,6 +9,7 @@ export default class ErrorTrigger extends Component {
     componentDidMount(){
 
     }
+    /// Because errors are not caught inside event handlers the throw error is in the render method
     render() {
         throw new Error("You just had to click this right?");
         return (
