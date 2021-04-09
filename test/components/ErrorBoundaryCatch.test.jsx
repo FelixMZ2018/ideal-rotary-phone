@@ -13,7 +13,7 @@ const Child = () => {
 };
 
 describe("Error Boundary", () => {
-  it(`should render error boundary component when there is an error`, () => {
+  it(`should render error boundary component when there is an error (Currently bugged) `, () => {
     const { getByText } = renderProviders(
       <MemoryRouter>
         <ErrorBoundary>
