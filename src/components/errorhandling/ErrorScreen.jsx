@@ -8,6 +8,7 @@ import {
   TextArea,
 } from "semantic-ui-react";
 import error_image from "images/Error.gif";
+import ServerAPI from '../../utils/ServerAPI'
 import { useHistory } from "react-router-dom";
 
 export default function ErrorScreen(props) {
@@ -27,7 +28,7 @@ export default function ErrorScreen(props) {
     return props.location.state.stacktrace;
   }
   function submitError() {
-    console.log("Sent off the bug report!");
+   ServerAPI.reportError({ errorName: errorMessage(props), stackTrace : stacktrace(props), creationTime: Date.now })
   }
   const Details = () => (
     <div>
@@ -75,19 +76,25 @@ export default function ErrorScreen(props) {
 
             <Button
               onClick={() => {
-                history.goBack();
+                history.goBack()
               }}
             >
               Go back
             </Button>
             <Button
               onClick={() => {
-                setErrorDetail(!ErrorDetail);
+                setErrorDetail(!ErrorDetail)
               }}
             >
               Details
             </Button>
-            <Button onClick={submitError}>Submit</Button>
+            <Button
+              onClick={() => {
+                submitError()
+              }}
+            >
+              Submit
+            </Button>
           </Form>
         </div>
       </Segment>
