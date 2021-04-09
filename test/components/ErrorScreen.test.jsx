@@ -1,18 +1,12 @@
-import {
-  getByRole,
-  findByText,
-  getByPlaceholderText,
-} from "@testing-library/dom";
-import "@testing-library/jest-dom";
+import React from 'react';
+import { render, waitForElement } from '@testing-library/react';
 
 import ErrorScreen from "../../src/components/errorhandling/ErrorScreen";
 
-describe('Error Screen',() => {
-    let div
-    let container
-    
-    beforeEach(() => {
-        div = document.createElement('div')
-        container = renderContent(div)
-      })
-})
+
+it('renders the Error Screen', async () => {
+    // Render new instance in every test to prevent leaking state
+    const { getByText } = render(<ErrorScreen/>);
+  
+    await waitForElement(() => getByText(/We are sorry this happened but rest assured we are working on fixing it/i));
+  });
