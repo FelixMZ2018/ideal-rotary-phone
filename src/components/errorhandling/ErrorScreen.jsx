@@ -1,4 +1,4 @@
-import React, { useState,setState } from "react";
+import React, { useState, setState } from "react";
 import {
   Button,
   Container,
@@ -12,49 +12,41 @@ import { useHistory } from "react-router-dom";
 
 export default function ErrorScreen(props) {
   const history = useHistory();
-  const [ErrorDetail, setErrorDetail] = useState(false)
+  const [ErrorDetail, setErrorDetail] = useState(false);
 
   function errorMessage() {
     if (!props.location || !props.location.state) {
-      return 'Something went wrong'
+      return "Something went wrong";
     }
-    return props.location.state.error
+    return props.location.state.error;
   }
   function stacktrace() {
     if (!props.location || !props.location.state) {
-      return 'Something went wrong'
+      return "Something went wrong";
     }
-    return props.location.state.stacktrace
+    return props.location.state.stacktrace;
   }
   function submitError() {
-    console.log('Sent off the bug report!')
+    console.log("Sent off the bug report!");
   }
   const Details = () => (
     <div>
-    <p>In addition we are collecting the following information:</p>
-    <div className="ui form">
-      <div className="one field">
-        <div className="field">
-          <label>Error Message</label>
-          <input
-            placeholder={errorMessage(props)}
-            readonly=""
-            type="text"
-          />
-        </div>
-        <div class="field">
-          <label>Stacktrace</label>
-          <TextArea
-            placeholder={stacktrace(props)}
-            readonly=""
-            type="text"
-          />
+      <p>In addition we are collecting the following information:</p>
+      <div className="ui form">
+        <div className="one field">
+          <div className="field">
+            <label>Error Message</label>
+            <input placeholder={errorMessage(props)} readonly="" type="text" />
+          </div>
+          <div class="field">
+            <label>Stacktrace</label>
+            <TextArea placeholder={stacktrace(props)} readonly="" type="text" />
+          </div>
         </div>
       </div>
+      <br></br>
     </div>
-    <br></br>
-    </div>
-  )
+  );
   return (
     <Container>
       <Segment>
@@ -79,12 +71,7 @@ export default function ErrorScreen(props) {
               <label>Last steps:</label>
               <input placeholder="e.g.: Tried adding a new centrifuge" />
             </Form.Field>
-            <Button
-              onClick={() => {
-                setErrorDetail(!ErrorDetail);
-              }}
-            >Details</Button>
-            { ErrorDetail ? <Details /> : null }
+            {ErrorDetail ? <Details /> : null}
 
             <Button
               onClick={() => {
@@ -93,8 +80,14 @@ export default function ErrorScreen(props) {
             >
               Go back
             </Button>
+            <Button
+              onClick={() => {
+                setErrorDetail(!ErrorDetail);
+              }}
+            >
+              Details
+            </Button>
             <Button onClick={submitError}>Submit</Button>
-
           </Form>
         </div>
       </Segment>
