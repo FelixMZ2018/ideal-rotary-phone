@@ -9,6 +9,7 @@ class ErrorBoundary extends Component {
   }
 
   componentDidCatch(error, errorInfo) {
+    console.log("Error Boundary triggerd via catch")
     this.setState({
       error: error,
       errorInfo: errorInfo,
@@ -18,6 +19,8 @@ class ErrorBoundary extends Component {
   }
 
   render() {
+    console.log("Error Boundary triggerd via render")
+    console.log(this.state.hasError)
     if (this.state.hasError) {
       this.setState({
         hasError: false,

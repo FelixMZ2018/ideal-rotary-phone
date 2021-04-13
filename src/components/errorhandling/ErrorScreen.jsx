@@ -16,7 +16,7 @@ export default function ErrorScreen(props) {
   const [ErrorDetail, setErrorDetail] = useState(false);
 
   function errorMessage() {
-    if (!props.location || !props.location.state) {
+    if (!props?.location?.state) {
       return "Something went wrong";
     }
     return props.location.state.error;

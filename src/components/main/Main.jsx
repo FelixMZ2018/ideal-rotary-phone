@@ -18,18 +18,17 @@ const Main = () => (
 
       <OspinSidebar />
       <ErrorBoundary>
-      <Container fluid className='main-content'>
-        <Switch>
-          <Route exact path='/devices' component={Devices} />
-          <Route exact path='/profile' component={Profile} />
-          <Route exact path='/notifications' component={Notifications} />
-          <Route exact path='/changelog' component={Changelog} />
-          <Route exact path='/error' component={ErrorScreen} />
-          <Route exact path='/errortrigger' component={ErrorTrigger} />
-
-          <Route path='/' component={Devices} />
-        </Switch>
-      </Container>
+        <Container fluid className='main-content'>
+          <Switch>
+            <Route exact path='/devices' component={Devices} />
+            <Route exact path='/profile' component={Profile} />
+            <Route exact path='/notifications' component={Notifications} />
+            <Route exact path='/changelog' component={Changelog} />
+            <Route exact path='/error' component={ErrorScreen} />
+            <Route exact path='/errortrigger' component={ErrorTrigger} />
+            <Route path='/' component={Devices} />
+          </Switch>
+        </Container>
       </ErrorBoundary>
     </BrowserRouter>
   </div>
